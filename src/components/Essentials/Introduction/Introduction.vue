@@ -26,6 +26,7 @@
     <!-- Conditionals and Loops -->
     <div id="conditional-rendering">
       <p v-if="seen">Now you see me</p>
+      <p v-else>Now you don't</p>
       <button @click="hideMe">Hide me</button>
     </div>
     <div id="list-rendering">
@@ -47,6 +48,14 @@
         <input v-model="question" />
       </p>
       <p>{{ answer }}</p>
+    </div>
+    <!-- Displaying Filtered/Sorted Results -->
+    <h3>Displaying Filtered/Sorted Results</h3>
+    <ul>
+      <li v-for="n in oddNumbers" :key="n">{{ n }}</li>
+    </ul>
+    <div id="range">
+      <li v-for="n in 10" :key="n">{{ n }}</li>
     </div>
   </div>
 </template>
@@ -87,6 +96,7 @@ export default {
       vuedoItem: "",
       question: "",
       answer: "Questions usually contain a question mark. ;-)",
+      numbers: [1, 2, 3, 4, 5, 6],
     };
   },
   mounted: function () {
@@ -138,6 +148,12 @@ export default {
   computed: {
     now() {
       return Date.now(); // Will be cached
+    },
+    evenNumbers() {
+      return this.numbers.filter((number) => number % 2 === 0);
+    },
+    oddNumbers() {
+      return this.numbers.filter((number) => number % 2 === 1);
     },
   },
   watch: {
