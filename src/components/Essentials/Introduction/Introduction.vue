@@ -61,6 +61,29 @@
     <div id="range">
       <li v-for="n in 10" :key="n">{{ n }}</li>
     </div>
+    <!-- Form Input Bindings -->
+    <div id="form-binding-checkbox">
+      <input type="checkbox" id="checkbox" v-model="readyToBuild" />
+      <label for="checkbox"
+        >Are you ready to build in Vue? {{ readyToBuild ? "YES" : "NO" }}</label
+      >
+    </div>
+    <div id="v-model-select" class="demo">
+      <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      <span>Selected: {{ selected }}</span>
+    </div>
+    <select v-model="multipleSelected" multiple>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <br />
+    <span>Selected: {{ multipleSelected }}</span>
   </div>
 </template>
 
@@ -101,6 +124,9 @@ export default {
       question: "",
       answer: "Questions usually contain a question mark. ;-)",
       numbers: [1, 2, 3, 4, 5, 6],
+      readyToBuild: false,
+      selected: "",
+      multipleSelected: [],
     };
   },
   mounted: function () {
