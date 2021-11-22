@@ -68,9 +68,21 @@ export default {
       inputMessage: "Hello vue!",
       seen: true,
       vuedos: [
-        { id: 1, text: "Learn JavaScript" },
-        { id: 2, text: "Learn Vue" },
-        { id: 3, text: "Build something awesome" },
+        {
+          id: 1,
+          text: "Learn JavaScript",
+          class: { completed: true },
+        },
+        {
+          id: 2,
+          text: "Learn Vue",
+          class: { completed: false },
+        },
+        {
+          id: 3,
+          text: "Build something awesome",
+          class: { completed: false },
+        },
       ],
       vuedoItem: "",
       question: "",

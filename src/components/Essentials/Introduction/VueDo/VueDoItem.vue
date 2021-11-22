@@ -1,10 +1,23 @@
 <template>
-  <li>{{ vuedo.text }}</li>
+  <li :class="vuedo.class" :style="styles">{{ vuedo.text }}</li>
 </template>
 
 <script>
 export default {
-  setup() {},
+  data() {
+    return {
+      styles: {
+        color: "#0A9567",
+        fontSize: "13px",
+      },
+    };
+  },
   props: ["vuedo"],
 };
 </script>
+
+<style>
+.completed {
+  text-decoration: line-through;
+}
+</style>
