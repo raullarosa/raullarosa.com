@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="introduction">
     <h1>{{ msg }}</h1>
     <!-- Declarative Rendering -->
     <div id="counter">
