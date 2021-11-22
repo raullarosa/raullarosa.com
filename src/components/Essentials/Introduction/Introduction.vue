@@ -37,7 +37,7 @@
         placeholder="Enter.."
       />
       <button @click="submitVuedo">Submit</button>
-      <vue-do-list :vuedos="vuedos" />
+      <vue-do-list :vuedos="vuedos" @toggle-completed="onToggleCompleted" />
     </div>
     <!-- Computed Caching vs Methods -->
     <div id="computed-caching">
@@ -107,17 +107,17 @@ export default {
         {
           id: 1,
           text: "Learn JavaScript",
-          class: { completed: true },
+          completed: true,
         },
         {
           id: 2,
           text: "Learn Vue",
-          class: { completed: false },
+          completed: false,
         },
         {
           id: 3,
           text: "Build something awesome",
-          class: { completed: false },
+          completed: false,
         },
       ],
       vuedoItem: "",
@@ -157,8 +157,12 @@ export default {
       this.vuedos.push({
         id: this.vuedos.length + 1,
         text: this.vuedoItem,
+        completed: false,
       });
       this.vuedoItem = "";
+    },
+    onToggleCompleted(vuedoID) {
+      this.vuedos[vuedoID - 1].completed = !this.vuedos[vuedoID - 1].completed;
     },
     getNow() {
       return Date.now(); // Updates every re-render

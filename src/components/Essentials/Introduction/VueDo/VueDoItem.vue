@@ -1,5 +1,7 @@
 <template>
-  <li :class="vuedo.class" :style="styles">{{ vuedo.text }}</li>
+  <li :class="{ completed: vuedo.completed }" :style="styles">
+    {{ vuedo.text }}
+  </li>
 </template>
 
 <script>
