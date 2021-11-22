@@ -1,18 +1,18 @@
 <template>
   <img id="vue-logo" alt="Vue logo" src="./assets/logo.png" />
-  <!-- <Introduction msg="Welcome to Your Vue.js App" /> -->
-  <AppComponentInstances />
+  <Introduction msg="Welcome to Your Vue.js App" />
+  <!-- <AppComponentInstances /> -->
 </template>
 
 <script>
-// import Introduction from "./components/Essentials/Introduction";
-import AppComponentInstances from "./components/Essentials/AppComponentInstances";
+import Introduction from "./components/Essentials/Introduction";
+// import AppComponentInstances from "./components/Essentials/AppComponentInstances";
 
 export default {
   name: "App",
   components: {
-    // Introduction,
-    AppComponentInstances,
+    Introduction,
+    // AppComponentInstances,
   },
 };
 </script>
