@@ -31,7 +31,11 @@
     </div>
     <div id="list-rendering">
       <p>Vue-do</p>
-      <input v-model="vuedoItem" placeholder="Enter.." />
+      <input
+        @keyup.enter="submitVuedo"
+        v-model="vuedoItem"
+        placeholder="Enter.."
+      />
       <button @click="submitVuedo">Submit</button>
       <vue-do-list :vuedos="vuedos" />
     </div>
