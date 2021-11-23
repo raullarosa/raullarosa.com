@@ -21,15 +21,14 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inconsolata', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  /* background-color: #2c3e50; */
   background-color: #020204;
   color: white;
   min-width: 100vw;
   min-height: 100vh;
+  font-size: 5.2vw;
 }
 #vue-logo {
   max-width: 100%;

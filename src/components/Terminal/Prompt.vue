@@ -1,45 +1,56 @@
 <template>
-  <div id="prompt" :style="styleObject.prompt">
-    <!-- <input v-model="commandInput" type="text" :style="styleObject.input" /> -->
-    <span class="directory">raullarosa</span>>
+  <form id="prompt" @click.prevent="focusPrompt" @submit.prevent="submitPrompt">
     <span class="input-wrap">
       <span class="width-machine" aria-hidden="true">
-        {{ commandInput }}
+        <span class="directory">raullarosa</span>>
+        {{ `${commandInput}` }}
+        <span id="caret" :style="styleObject.caret">{{String.fromCharCode(9619)}}</span>
       </span>
-      <input class="input" v-model="commandInput">
+      <input
+        ref="prompt"
+        class="input"
+        v-model="commandInput"
+        spellcheck="false"
+      />
     </span>
-    <caret />
-  </div>
+  </form>
 </template>
 
 <script>
-import Caret from './Caret.vue'
 export default {
-  components: { Caret },
+  mounted() {
+    this.focusPrompt()
+    this.interval = setInterval(() => {
+      this.showCaret = !this.showCaret
+    }, 500)
+  },
+  unmounted() {
+    clearInterval(this.interval)
+  },
   data() {
     return {
-      commandInput: ""
+      commandInput: "",
+      showCaret: true
     }
   },
   computed: {
     styleObject() {
       return {
-        prompt: {
-          display: "flex",
-          "flex-direciton": "row",
-          height: "25px"
-        },
-        input: {
-          "background-color": "transparent",
-          color: "white",
-          border: "none",
-          padding: 0,
-          outline: "none !important",
-          width: "fit-content",
-          "caret-color": "transparent"
+        caret: {
+          position: "absolute",
+          transform: "translate(0px, -2px)",
+          color: this.showCaret ? "white" : "transparent"
         }
       }
+    }
+  },
+  methods: {
+    focusPrompt() {
+      this.$refs.prompt.focus()
     },
+    submitPrompt() {
+      console.log(`Prompt: ${this.commandInput}`);
+    }
   }
 }
 </script>
@@ -49,27 +60,32 @@ export default {
   color: #3eaf7c;
   margin-right: 0.25rem;
 }
+
 .input {
   border: none;
   font-family: inherit;
   font-size: inherit;
   padding: 1px 6px;
   background-color: transparent;
-  color: white;
   outline: none;
-  caret-color: transparent;
+  max-width: "50%";
+  color: transparent;
 }
 
 .input-wrap {
   position: relative;
-  margin-right: 0.5rem;
 }
+
 .input-wrap .input {
   position: absolute;
   width: 100%;
   left: 0;
+  cursor: pointer;
 }
+
 .width-machine {
-  color: transparent;
+  color: white;
+  word-break: break-all;
+  text-align: left;
 }
 </style>
