@@ -1,18 +1,20 @@
 <template>
-  <img id="vue-logo" alt="Vue logo" src="./assets/logo.png" />
-  <Introduction msg="Welcome to Your Vue.js App" />
+  <terminal></terminal>
+  <!-- <Introduction msg="Welcome to Your Vue.js App" /> -->
   <!-- <AppComponentInstances /> -->
 </template>
 
 <script>
-import Introduction from "./components/Essentials/Introduction";
+import Terminal from "./components/Terminal/Terminal.vue";
+// import Introduction from "./components/Essentials/Introduction";
 // import AppComponentInstances from "./components/Essentials/AppComponentInstances";
 
 export default {
   name: "App",
   components: {
-    Introduction,
+    // Introduction,
     // AppComponentInstances,
+    Terminal,
   },
 };
 </script>
@@ -23,8 +25,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  /* background-color: #2c3e50; */
+  background-color: #020204;
+  color: white;
+  min-width: 100vw;
+  min-height: 100vh;
 }
 #vue-logo {
   max-width: 100%;
