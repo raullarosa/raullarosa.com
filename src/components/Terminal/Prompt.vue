@@ -17,7 +17,10 @@
 </template>
 
 <script>
+import helper from "../../helpers"
 export default {
+  props: ['clickedCommand'],
+  emits: ['submitCommand'],
   mounted() {
     this.focusPrompt()
     this.interval = setInterval(() => {
@@ -49,7 +52,25 @@ export default {
       this.$refs.prompt.focus()
     },
     submitPrompt() {
-      console.log(`Prompt: ${this.commandInput}`);
+      this.$emit('submitCommand', this.commandInput)
+      this.commandInput = ""
+    },
+    typeCommand: async function(command) {
+      this.commandInput = ""
+      for (let charIndex = 0; charIndex < command.length; charIndex++) {
+        this.commandInput += command.charAt(charIndex)
+
+        // Simulates typing
+        await helper.delay(200)
+      }
+
+      this.$emit('submitCommand', this.commandInput)
+      this.commandInput = ""
+    }
+  },
+  watch: {
+    clickedCommand(newValue) {
+      this.typeCommand(newValue)
     }
   }
 }
