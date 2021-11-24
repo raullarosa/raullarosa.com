@@ -3,9 +3,11 @@
     <feed
       :commandList="commandList"
       @submit-command="submitCommand"
+      @click.prevent="updateFocus"
     />
     <prompt
       :clickedCommand="clickedCommand"
+      :focusTimestamp="focusTimestamp"
       @submit-command="submitCommand"
     />
   </div>
@@ -19,7 +21,8 @@ export default {
   data() {
     return {
       clickedCommand: "",
-      commandList: ["readme"]
+      commandList: ["readme"],
+      focusTimestamp: Date.now()
     }
   },
   computed: {
@@ -49,6 +52,14 @@ export default {
     scrollToBottom() {
       let terminal = this.$refs.terminal
       terminal.scrollTop = terminal.scrollHeight
+    },
+    updateFocus() {
+      this.focusTimestamp = Date.now()
+
+      // Timeout necessary to trigger
+      setTimeout(() => {
+        this.scrollToBottom()
+      }, 50)
     }
   }
 };

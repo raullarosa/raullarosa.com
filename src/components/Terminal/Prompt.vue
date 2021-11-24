@@ -20,7 +20,7 @@
 <script>
 import helper from "../../helpers"
 export default {
-  props: ['clickedCommand'],
+  props: ['clickedCommand', 'focusTimestamp'],
   emits: ['submitCommand'],
   mounted() {
     this.focusPrompt()
@@ -71,7 +71,10 @@ export default {
   },
   watch: {
     clickedCommand(newValue) {
-      this.typeCommand(newValue)
+      if (newValue) this.typeCommand(newValue)
+    },
+    focusTimestamp(newValue, oldValue) {
+      if (newValue > oldValue) this.focusPrompt()
     }
   }
 }
