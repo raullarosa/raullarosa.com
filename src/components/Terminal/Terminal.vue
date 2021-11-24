@@ -1,5 +1,5 @@
 <template>
-  <div id="terminal" v-bind:style="styleObject">
+  <div id="terminal" ref="terminal" v-bind:style="styleObject">
     <feed
       :commandList="commandList"
       @submit-command="submitCommand"
@@ -29,7 +29,8 @@ export default {
         "flex-direction": "column",
         "padding": "1rem",
         "height": "calc(100vh - 2rem)",
-        "background-color": "#2c3e50"
+        "background-color": "#2c3e50",
+        "overflow-y": "scroll"
       }
     }
   },
@@ -38,7 +39,16 @@ export default {
       if (clicked) this.clickedCommand = command
       else {
         this.commandList.push(command)
+
+        // Timeout necessary to trigger
+        setTimeout(() => {
+          this.scrollToBottom()
+        }, 50)
       }
+    },
+    scrollToBottom() {
+      let terminal = this.$refs.terminal
+      terminal.scrollTop = terminal.scrollHeight
     }
   }
 };

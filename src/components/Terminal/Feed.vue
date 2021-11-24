@@ -1,6 +1,13 @@
 <template>
   <div id="feed">
-    {{ commandList }}
+    <div
+      v-for="(command, index) in commandList"
+      v-bind:key="index"
+      class="width-machine command"
+    >
+      <span class="directory">raullarosa</span>
+      <span>{{ command }}</span>
+    </div>
   </div>
 </template>
 
@@ -17,4 +24,10 @@ export default {
 </script>
 
 <style>
+#feed {
+
+}
+.command {
+  margin-bottom: 0.5rem;
+}
 </style>

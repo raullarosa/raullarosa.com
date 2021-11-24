@@ -2,8 +2,8 @@
   <form id="prompt" @click.prevent="focusPrompt" @submit.prevent="submitPrompt">
     <span class="input-wrap">
       <span class="width-machine" aria-hidden="true">
-        <span class="directory">raullarosa</span>>
-        {{ `${commandInput}` }}
+        <span class="directory">raullarosa</span>
+        <span>{{ commandInput }}</span>
         <span id="caret" :style="styleObject.caret">{{String.fromCharCode(9619)}}</span>
       </span>
       <input
@@ -11,6 +11,7 @@
         class="input"
         v-model="commandInput"
         spellcheck="false"
+        type="text"
       />
     </span>
   </form>
@@ -52,7 +53,7 @@ export default {
       this.$refs.prompt.focus()
     },
     submitPrompt() {
-      this.$emit('submitCommand', this.commandInput)
+      this.$emit('submitCommand', this.commandInput, false)
       this.commandInput = ""
     },
     typeCommand: async function(command) {
@@ -77,16 +78,20 @@ export default {
 </script>
 
 <style>
+#prompt {
+  height: 100%;
+}
+
 .directory {
   color: #3eaf7c;
-  margin-right: 0.25rem;
+  margin-right: 0.5rem;
 }
 
 .input {
   border: none;
   font-family: inherit;
   font-size: inherit;
-  padding: 1px 6px;
+  padding: 0;
   background-color: transparent;
   outline: none;
   max-width: "50%";
