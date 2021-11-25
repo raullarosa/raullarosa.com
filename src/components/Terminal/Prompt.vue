@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import helper from "../../helpers"
+import { delayHelper } from "../../helpers"
 export default {
   props: ['clickedCommand', 'focusTimestamp'],
   emits: ['submitCommand'],
@@ -62,7 +62,7 @@ export default {
         this.commandInput += command.charAt(charIndex)
 
         // Simulates typing
-        await helper.delay(200)
+        await delayHelper(charIndex < 5 ? 200 : 10)
       }
 
       this.$emit('submitCommand', this.commandInput)

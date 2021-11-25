@@ -1,19 +1,13 @@
 <template>
   <terminal></terminal>
-  <!-- <Introduction msg="Welcome to Your Vue.js App" /> -->
-  <!-- <AppComponentInstances /> -->
 </template>
 
 <script>
 import Terminal from "./components/Terminal/Terminal.vue";
-// import Introduction from "./components/Essentials/Introduction";
-// import AppComponentInstances from "./components/Essentials/AppComponentInstances";
 
 export default {
   name: "App",
   components: {
-    // Introduction,
-    // AppComponentInstances,
     Terminal,
   },
 };
@@ -28,7 +22,7 @@ export default {
   color: white;
   min-width: 100vw;
   min-height: 100vh;
-  font-size: 5.2vw;
+  font-size: 20px;
 }
 #vue-logo {
   max-width: 100%;

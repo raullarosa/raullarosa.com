@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { contentHelper } from '../../helpers';
 import Feed from './Feed.vue';
 import Prompt from './Prompt.vue';
 export default {
@@ -41,12 +42,18 @@ export default {
     submitCommand(command, clicked = false) {
       if (clicked) this.clickedCommand = command
       else {
+        this.clickedCommand = "" // Reset prop
         this.commandList.push(command)
 
         // Timeout necessary to trigger
         setTimeout(() => {
           this.scrollToBottom()
         }, 50)
+
+        // Open links
+        if (contentHelper[command].link) {
+          window.open(contentHelper[command].link)
+        }
       }
     },
     scrollToBottom() {
