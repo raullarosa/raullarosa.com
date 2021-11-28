@@ -58,13 +58,9 @@ export default {
     },
     typeCommand: async function(command) {
       this.commandInput = ""
-      for (let charIndex = 0; charIndex < command.length; charIndex++) {
-        this.commandInput += command.charAt(charIndex)
-
-        // Simulates typing
-        await delayHelper(charIndex < 5 ? 200 : 10)
-      }
-
+      await delayHelper.typeWord(command, (wordTyped) => {
+        this.commandInput = wordTyped
+      })
       this.$emit('submitCommand', this.commandInput)
       this.commandInput = ""
     }
