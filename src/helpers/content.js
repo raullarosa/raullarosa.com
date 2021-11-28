@@ -1,4 +1,4 @@
-import { constantsHelper } from "./"
+import constantsHelper from "./constants"
 
 const navigationActions = [
   { type: 'command', label: 'readme' },
