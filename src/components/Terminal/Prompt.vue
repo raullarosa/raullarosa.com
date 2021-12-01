@@ -9,8 +9,12 @@
       <input
         ref="prompt"
         class="input"
-        v-model="commandInput"
-        spellcheck="false"
+        :value="commandInput.toLowerCase()"
+        @input="commandInput = $event.target.value.toLowerCase()"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false" 
         type="text"
       />
     </span>
