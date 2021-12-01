@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:raullarosa/raullarosa.github.io.git production
 
 # if you are deploying to https://raullarosa.github.io/raullarosa.com
-git push -f git@github.com:raullarosa/raullarosa.com.git production
+git push -f git@github.com:raullarosa/raullarosa.com.git master
 
 cd -
