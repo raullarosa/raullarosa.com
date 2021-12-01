@@ -99,6 +99,7 @@ export default {
   outline: none;
   max-width: "50%";
   color: transparent;
+  overflow: hidden;
 }
 
 .input-wrap {
