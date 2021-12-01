@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import helper from "../../helpers"
+import { delayHelper } from "../../helpers"
 export default {
   props: ['clickedCommand', 'focusTimestamp'],
   emits: ['submitCommand'],
@@ -58,14 +58,10 @@ export default {
     },
     typeCommand: async function(command) {
       this.commandInput = ""
-      for (let charIndex = 0; charIndex < command.length; charIndex++) {
-        this.commandInput += command.charAt(charIndex)
-
-        // Simulates typing
-        await helper.delay(200)
-      }
-
-      this.$emit('submitCommand', this.commandInput)
+      await delayHelper.typeWord(command, (wordTyped) => {
+        this.commandInput = wordTyped
+      })
+      this.$emit('submitCommand', command)
       this.commandInput = ""
     }
   },
@@ -109,7 +105,7 @@ export default {
   position: absolute;
   width: 100%;
   left: 0;
-  cursor: pointer;
+  cursor: default;
 }
 
 .width-machine {
