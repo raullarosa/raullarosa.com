@@ -7,12 +7,12 @@ set -e
 yarn run build
 
 # navigate into the build output directory
-cd dist
+# cd dist
 
 # if you are deploying to a custom domain
-echo 'www.raullarosa.com' > CNAME
+# echo 'www.raullarosa.com' > CNAME
 
-git init
+# git init
 git add -A
 git commit -m 'deploy'
 
@@ -20,6 +20,8 @@ git commit -m 'deploy'
 # git push -f git@github.com:raullarosa/raullarosa.github.io.git production
 
 # if you are deploying to https://raullarosa.github.io/raullarosa.com
-git push -f git@github.com:raullarosa/raullarosa.com.git master
+git push -f git@github.com:raullarosa/raullarosa.com.git production
+
+firebase deploy --only hosting
 
 cd -
