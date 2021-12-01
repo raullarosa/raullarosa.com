@@ -22,6 +22,4 @@ git commit -m 'deploy'
 # if you are deploying to https://raullarosa.github.io/raullarosa.com
 git push -f git@github.com:raullarosa/raullarosa.com.git master
 
-firebase deploy --only hosting
-
 cd -
