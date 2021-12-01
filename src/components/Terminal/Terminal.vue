@@ -40,6 +40,9 @@ export default {
   },
   methods: {
     submitCommand(command, clicked = false) {
+      // Trim spaces off input
+      command = command.trim();
+
       if (clicked) this.clickedCommand = command
       else {
         this.clickedCommand = "" // Reset prop
@@ -59,7 +62,7 @@ export default {
               contentElement = this.$el.querySelector(commandID),
               elemRect = contentElement.getBoundingClientRect()
             
-            this.scrollTo(elemRect.height)
+            this.scrollTo(elemRect.top - 30) // Show beginning of content
           }
         })
 
@@ -69,9 +72,9 @@ export default {
         }
       }
     },
-    scrollTo(contentHeight = 0) {
+    scrollTo(contentPosition = 0) {
       let terminal = this.$refs.terminal
-      terminal.scrollTop = terminal.scrollHeight - contentHeight - 75 // Snaps to top of content
+      terminal.scrollTop = contentPosition || terminal.scrollHeight // Snaps to top of content or bottom of page
     },
     updateFocus() {
       this.focusTimestamp = Date.now()
