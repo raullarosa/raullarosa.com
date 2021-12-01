@@ -27,7 +27,7 @@
           {{ content[command].link.text }}
         </a>
         <span v-if="content[command].actions" class="actions">
-          type or click on one of the following commands:
+          Type or click one of the following commands:
           <ul class="dashed">
             <li
               v-for="(action, actionIndex) in content[command].actions"
@@ -113,11 +113,11 @@ export default {
   margin-bottom: 0.5rem;
 }
 .actions {
-  margin-left: 1rem;
-  font-style: italic;
+  word-break: normal;
   margin-top: 1rem;
 }
 .action-link {
+  font-style: italic;
   cursor: pointer;
 }
 .action-link:hover {
