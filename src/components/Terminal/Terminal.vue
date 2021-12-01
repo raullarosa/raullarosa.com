@@ -44,29 +44,41 @@ export default {
       else {
         this.clickedCommand = "" // Reset prop
         this.commandList.push(command)
+        const {
+          info,
+          link = {}
+        } = contentHelper[command] || {}
 
-        // Timeout necessary to trigger
-        setTimeout(() => {
-          this.scrollToBottom()
-        }, 50)
+        this.$nextTick(() => {
+          if (!command || !info ) {
+            // Scroll to active prompt
+            this.scrollTo()
+          } else {
+            // Scroll to top of content
+            let commandID = `#command_${this.commandList.length - 1}_content`,
+              contentElement = this.$el.querySelector(commandID),
+              elemRect = contentElement.getBoundingClientRect()
+            
+            this.scrollTo(elemRect.height)
+          }
+        })
 
         // Open links
-        if (contentHelper[command].link) {
-          window.open(contentHelper[command].link)
+        if (link.autoOpen) {
+          window.open(link.url)
         }
       }
     },
-    scrollToBottom() {
+    scrollTo(contentHeight = 0) {
       let terminal = this.$refs.terminal
-      terminal.scrollTop = terminal.scrollHeight
+      terminal.scrollTop = terminal.scrollHeight - contentHeight - 75 // Snaps to top of content
     },
     updateFocus() {
       this.focusTimestamp = Date.now()
 
-      // Timeout necessary to trigger
-      setTimeout(() => {
-        this.scrollToBottom()
-      }, 50)
+      this.$nextTick(() => {
+        this.scrollTo()
+      })
     }
   }
 };

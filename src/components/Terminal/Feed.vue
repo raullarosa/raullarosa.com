@@ -8,14 +8,24 @@
       <span class="directory">raullarosa</span>
       <span>{{ command }}</span>
     <div class="width-machine output">
-      <span v-if="content[command]" class="content">
-          <a
-            v-if="!!content[command].link"
-            v-bind:href="content[command].link" 
-            @click.prevent="openLink(content[command].link)">
-            {{ content[command].content }}
-          </a>
-          <span v-else>{{ content[command].content }}</span>
+      <span v-if="content[command]" class="content" :id="`command_${index}_content`">
+        <span v-if="content[command].info" class="info">
+          <span v-if="content[command].info.title" class="title">{{ content[command].info.title }}</span>
+          <span v-if="content[command].info.dateRange" class="date">{{ content[command].info.dateRange }}</span>
+          <span
+            v-for="(text, textIndex) in content[command].info.text"
+            v-bind:key="`command_${index}_text_${textIndex}`"
+            class="text"
+          >
+            {{ text }}
+          </span>
+        </span>
+        <a
+          v-if="!!content[command].link"
+          v-bind:href="content[command].link.url" 
+          @click.prevent="openLink(content[command].link.url)">
+          {{ content[command].link.text }}
+        </a>
         <span v-if="content[command].actions" class="actions">
           type or click on one of the following commands:
           <ul class="dashed">
@@ -29,6 +39,9 @@
             </li>
           </ul>
         </span>
+      </span>
+      <span v-else-if="!!!command">
+        <!-- Nothing to render -->
       </span>
       <span v-else>
         command not found: {{ command }}
@@ -84,6 +97,21 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  word-break: normal;
+}
+.info>.title {
+  margin-bottom: 0.5rem;
+}
+.info>.date {
+  margin-bottom: 0.5rem;
+}
+.info>.text {
+  margin-bottom: 0.5rem;
+}
 .actions {
   margin-left: 1rem;
   font-style: italic;
@@ -110,5 +138,6 @@ ul.dashed > li:before {
 }
 a:-webkit-any-link {
   color: white !important;
+  word-break: normal;
 }
 </style>

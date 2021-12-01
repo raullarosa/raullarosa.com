@@ -61,7 +61,7 @@ export default {
       await delayHelper.typeWord(command, (wordTyped) => {
         this.commandInput = wordTyped
       })
-      this.$emit('submitCommand', this.commandInput)
+      this.$emit('submitCommand', command)
       this.commandInput = ""
     }
   },
@@ -105,7 +105,7 @@ export default {
   position: absolute;
   width: 100%;
   left: 0;
-  cursor: pointer;
+  cursor: default;
 }
 
 .width-machine {
