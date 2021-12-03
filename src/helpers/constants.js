@@ -1,4 +1,4 @@
-const resumeURL = 'https://www.dropbox.com/s/71lu7g1mt2mvm72/LaRosa_Raul_Resume_1221.pdf?dl=0'
+const resumeURL = 'https://resume.raullarosa.com'
 const emailURL = 'mailto:raullarosa.personal@gmail.com'
 const linkedinURL = 'https://linkedin.com/in/raullarosa'
 const bthvURL = 'https://travel.gov.bs/'
